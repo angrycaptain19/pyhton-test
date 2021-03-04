@@ -13,6 +13,25 @@ class BaseClass:
             EC.presence_of_element_located((By.LINK_TEXT, text))
         )
 
+    def verifyElementPresence(self, name):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.NAME, name))
+        )
+
+    def verifyElementClickable(self, id):
+        element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.NAME, id))
+        )
+
+    def verifyIdPresence(self, id):
+        element = WebDriverWait(self.driver, 15).until(
+            EC.presence_of_element_located((By.ID, id))
+        )
+
     def selectOptionByText(self, locator, text):
         sel = Select(locator)
         sel.select_by_visible_text(text)
+
+    def selectOptionByValue(self, locator, value):
+        sel = Select(locator)
+        sel.select_by_value(value)
