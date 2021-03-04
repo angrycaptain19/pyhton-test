@@ -8,24 +8,9 @@ from selenium.webdriver.support.select import Select
 @pytest.mark.usefixtures("setup")
 class BaseClass:
 
-    def verifyLinkPresence(self, text):
-        element = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.LINK_TEXT, text))
-        )
-
-    def verifyElementPresence(self, name):
-        element = WebDriverWait(self.driver, 10).until(
-            EC.presence_of_element_located((By.NAME, name))
-        )
-
     def verifyElementClickable(self, id):
         element = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.NAME, id))
-        )
-
-    def verifyIdPresence(self, id):
-        element = WebDriverWait(self.driver, 15).until(
-            EC.presence_of_element_located((By.ID, id))
         )
 
     def selectOptionByText(self, locator, text):

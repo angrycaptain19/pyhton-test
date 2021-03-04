@@ -1,12 +1,9 @@
 from selenium.webdriver.common.by import By
 
 
-
 class FlightPage:
     def __init__(self, driver):
         self.driver = driver
-
-
 
     origin = (By.ID, "flight-from")
     destination = (By.ID, "flight-to")

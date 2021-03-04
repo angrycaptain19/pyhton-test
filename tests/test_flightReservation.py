@@ -1,5 +1,3 @@
-from decimal import Decimal
-from operator import sub
 import re
 
 from pagesObjects.BasePage import BasePage
