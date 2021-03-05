@@ -56,12 +56,11 @@ class Source:
     def __getitem__(self, key: Union[int, slice]) -> Union[str, "Source"]:
         if isinstance(key, int):
             return self.lines[key]
-        else:
-            if key.step not in (None, 1):
-                raise IndexError("cannot slice a Source with a step")
-            newsource = Source()
-            newsource.lines = self.lines[key.start : key.stop]
-            return newsource
+        if key.step not in (None, 1):
+            raise IndexError("cannot slice a Source with a step")
+        newsource = Source()
+        newsource.lines = self.lines[key.start : key.stop]
+        return newsource
 
     def __iter__(self) -> Iterator[str]:
         return iter(self.lines)
@@ -158,10 +157,7 @@ def get_statement_startend2(lineno: int, node: ast.AST) -> Tuple[int, Optional[i
     values.sort()
     insert_index = bisect_right(values, lineno)
     start = values[insert_index - 1]
-    if insert_index >= len(values):
-        end = None
-    else:
-        end = values[insert_index]
+    end = None if insert_index >= len(values) else values[insert_index]
     return start, end
 
 

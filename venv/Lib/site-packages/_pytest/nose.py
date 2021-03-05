@@ -16,9 +16,8 @@ def pytest_runtest_setup(item):
 
 
 def teardown_nose(item):
-    if is_potential_nosetest(item):
-        if not call_optional(item.obj, "teardown"):
-            call_optional(item.parent.obj, "teardown")
+    if is_potential_nosetest(item) and not call_optional(item.obj, "teardown"):
+        call_optional(item.parent.obj, "teardown")
 
 
 def is_potential_nosetest(item: Item) -> bool:

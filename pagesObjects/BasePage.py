@@ -16,5 +16,4 @@ class BasePage:
 
     def goToFlights(self):
         self.driver.find_element(*BasePage.flight).click()
-        flight_page = FlightPage(self.driver)
-        return flight_page
+        return FlightPage(self.driver)
